@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
 
-sleep .5
-
 if ! pgrep -x polybar; then
   polybar left &
+  ln -s /tmp/polybar_mqueue.$! /tmp/i3-mode
   polybar right &
 else
   pkill -USR1 polybar
 fi
-
-echo "Bars launched..."
