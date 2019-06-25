@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+case "$1" in
+  default)
+    notify-send 'Key bindings' '<i>Mod + Return</i>: Terminal\n<i>Mod + space</i>: Toggle float\n'
+    ;;
+  *)
+    echo $"Usage: $0 {default}"
+    exit 1
+esac

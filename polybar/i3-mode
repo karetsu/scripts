@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-
-i3-msg -t subscribe -m '[ "mode" ]' | \
-  jq -r --unbuffered '.change' > /tmp/i3-mode &
