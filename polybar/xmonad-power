@@ -1,0 +1,16 @@
+#!/bin/sh
+
+echo "%{c}%{A1:pkill lemonbar:}%{A}\
+      %{A1:pkill lemonbar; i3lock-fancy:}%{A}\
+      %{A1:pkill lemonbar; i3lock-fancy && echo mem > /sys/power/state:}%{A}\
+      %{A1:logout:}%{A}\
+      %{A1:reboot:}%{A}\
+      %{A1:poweroff:}%{A} " \
+      | lemonbar -f "Fira Sans:size=68" \
+                 -f "Font Awesome:size=82"\
+                 -g 2560x1440+0+0 \
+                 -B '#ff2e3440' \
+                 -F '#d8dee9' \
+                 -a 6 \
+                 -p \
+      | sh
