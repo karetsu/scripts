@@ -1,11 +1,10 @@
 #!/bin/sh
 
 echo "%{c}%{A1:pkill lemonbar:}%{A}\
-      %{A1:pkill lemonbar; i3lock-fancy:}%{A}\
-      %{A1:pkill lemonbar; i3lock-fancy && echo mem > /sys/power/state:}%{A}\
-      %{A1:logout:}%{A}\
-      %{A1:reboot:}%{A}\
-      %{A1:poweroff:}%{A} " \
+      %{A1:pkill lemonbar; i3lock-fancy:}%{F#a3be8c}%{F-}%{A}\
+      %{A1:pkill lemonbar; i3lock-fancy && echo mem > /sys/power/state:}%{F#b48ead}%{F-}%{A}\
+      %{A1:reboot:}%{F#88c0d0}%{F-}%{A}\
+      %{A1:poweroff:}%{F#bf616a}%{F-}%{A} " \
       | lemonbar -f "Fira Sans:size=68" \
                  -f "Font Awesome:size=82"\
                  -g 2560x1440+0+0 \
