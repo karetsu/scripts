@@ -16,9 +16,11 @@ case $desktop in
     ;;
   none+xmonad)
     if ! pgrep -x polybar; then
-      polybar xmonad-left &
+      #polybar xmonad-left &
+      # ln -s /tmp/polybar_mqueue.$! /tmp/xmonad-mode
+      # polybar xmonad-right &
+      polybar xmonad-left-alt &
       ln -s /tmp/polybar_mqueue.$! /tmp/xmonad-mode
-      polybar xmonad-right &
     else
       pkill -USR1 polybar
     fi
