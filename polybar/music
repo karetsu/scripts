@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-# polybar version
-playerctl --follow metadata --format '{{artist}}  |  {{title}}'
-

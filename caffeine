@@ -6,10 +6,12 @@ STATUS=$(xset -q | grep 'DPMS is' | tail -1 | awk '{print $3;}')
 case $STATUS in
   'Enabled') # we turn it off if its on
     echo '%{F#4c566a}%{F-}' > /tmp/caffeine
+    xset s off
     xset -dpms
    ;;
   'Disabled')
     echo '%{F#eceff4}%{F-}' > /tmp/caffeine
+    xset s on
     xset +dpms
     ;;
 esac
