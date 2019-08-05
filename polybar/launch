@@ -7,19 +7,15 @@ desktop=$(echo $DESKTOP_SESSION)
 case $desktop in
   none+i3)
     if ! pgrep -x polybar; then
-      polybar i3-left &
+      polybar i3 &
       ln -s /tmp/polybar_mqueue.$! /tmp/i3-mode
-      polybar i3-right &
     else
       pkill -USR1 polybar
     fi
     ;;
   none+xmonad)
     if ! pgrep -x polybar; then
-      #polybar xmonad-left &
-      # ln -s /tmp/polybar_mqueue.$! /tmp/xmonad-mode
-      # polybar xmonad-right &
-      polybar xmonad-left-alt &
+      polybar xmonad &
       ln -s /tmp/polybar_mqueue.$! /tmp/xmonad-mode
     else
       pkill -USR1 polybar
