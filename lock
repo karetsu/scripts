@@ -1,0 +1,25 @@
+#!/usr/bin/env zsh
+
+pacmd suspend 1
+i3lock-color \
+  -n \
+  --indicator \
+  -c 292e39 \
+  -S=0 \
+  --insidecolor=2e3440ff \
+  --insidevercolor=81a1c1ff \
+  --insidewrongcolor=2e3440ff \
+  --ringcolor=d8dee9ff \
+  --ringvercolor=d8dee9ff \
+  --ringwrongcolor=d8dee9ff \
+  --line-uses-ring \
+  --keyhlcolor=a3be8cff \
+  --bshlcolor=4c566aff \
+  --layoutcolor=eceff4ff \
+  --separatorcolor=2e344000 \
+  --indpos="x+120:y+1200" \
+  --radius=40 \
+  --ring-width=15 \
+  --veriftext="" --wrongtext="" && \
+pacmd suspend 0
+
