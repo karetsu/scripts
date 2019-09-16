@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+set -e 
+fd -t d -H '.git$' ~ | grep -Ev 'Download|Project' > ~/.repos
