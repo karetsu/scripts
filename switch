@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+pacmd exit
+dm-tool switch-to-greeter

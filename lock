@@ -51,4 +51,3 @@ i3lock-color \
   --wrongpos="x+w/2:y+h/2" \
   --wrongsize=256 && \
 pacmd suspend 0
-
