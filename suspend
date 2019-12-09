@@ -1,5 +1,7 @@
-
 #!/usr/bin/env zsh
+
+## pre-suspend:
+SINK=$(pactl list sinks | grep 'Name:' | head -1 | awk '{print $2;}')
 
 i3lock-color \
   --indicator \
@@ -51,4 +53,10 @@ i3lock-color \
   --wrongsize=256 && \
 pacmd suspend 1 && \
 systemctl suspend
+
+while [[ $(pgrep i3lock-color | wc -l) -ne 0 ]]; do
+  sleep 0.1
+done;
+
 pacmd suspend 0
+pactl set-default-sink $SINK

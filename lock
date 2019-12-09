@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 
+SINK=$(pactl list sinks | grep 'Name:' | head -1 | awk '{print $2;}')
 pacmd suspend 1
+
 i3lock-color \
   -n \
   --indicator \
@@ -49,5 +51,6 @@ i3lock-color \
   --wrongcolor=d08770ff \
   --wrong-font="Deadhead Script" \
   --wrongpos="x+w/2:y+h/2" \
-  --wrongsize=256 && \
-pacmd suspend 0
+  --wrongsize=256 &&\
+pacmd suspend 0 &&\
+pactl set-default-sink $SINK
