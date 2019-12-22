@@ -1,27 +1,71 @@
 #!/usr/bin/env zsh
 
+# TODO: make THEME part of the environment
+#       for now its set in here
+THEME=laserwave
+
+case "$THEME" in 
+  nord)
+    background=292e39
+    insidecolor=2e3440ff
+    insidevercolor=81a1c1ff
+    insidewrongcolor=d08770ff
+    ringcolor=d8dee9ff
+    ringvercolor=d8dee9ff
+    ringwrongcolor=d8dee9ff
+    keyhlcolor=a3be8cff
+    bshlcolor=bf616aff
+    layoutcolor=eceff4ff
+    seperatorcolor=2e344000
+    timecolor=e5e9f0ff
+    datecolor=88c0d0ff
+    verifcolor=81a1c1ff
+    wrongcolor=d08770ff
+    ;;
+  laserwave)
+    background=27212e
+    insidecolor=27212eff
+    insidevercolor=ffb85bff
+    insidewrongcolor=964c7bff
+    ringcolor=eceff4ff
+    ringvercolor=eceff4ff
+    ringwrongcolor=eceff4ff
+    keyhlcolor=74dfc4ff
+    bshlcolor=1b1720ff
+    layoutcolor=eeeeeeff
+    seperatorcolor=27212e00
+    timecolor=ffffffff
+    datecolor=40b4c4ff
+    verifcolor=ffb85bff
+    wrongcolor=964c7bff
+    ;;
+  *)
+    exit;;
+esac
+
+
 SINK=$(pactl list sinks | grep 'Name:' | head -1 | awk '{print $2;}')
 pacmd suspend 1
 
 i3lock-color \
   -n \
   --indicator \
-  -c 292e39 \
+  -c $background \
   -S=0 \
-  --insidecolor=2e3440ff \
-  --insidevercolor=81a1c1ff \
-  --insidewrongcolor=d08770ff \
+  --insidecolor=$insidecolor \
+  --insidevercolor=$insidevercolor \
+  --insidewrongcolor=$insidewrongcolor \
   \
-  --ringcolor=d8dee9ff \
-  --ringvercolor=d8dee9ff \
-  --ringwrongcolor=d8dee9ff \
+  --ringcolor=$ringcolor \
+  --ringvercolor=$ringvercolor \
+  --ringwrongcolor=$ringwrongcolor \
   \
   --line-uses-inside \
-  --keyhlcolor=a3be8cff \
-  --bshlcolor=bf616aff \
+  --keyhlcolor=$keyhlcolor \
+  --bshlcolor=$bshlcolor \
   \
-  --layoutcolor=eceff4ff \
-  --separatorcolor=2e344000 \
+  --layoutcolor=$layoutcolor \
+  --separatorcolor=$seperatorcolor \
   --indpos="x+w/2:y+200+h/2" \
   --radius=52 \
   --ring-width=20 \
@@ -29,26 +73,26 @@ i3lock-color \
   \
   --clock \
   \
-  --timecolor=e5e9f0ff \
+  --timecolor=$timecolor \
   --timestr="•%H %M•" \
   --timepos="x+w/2:y+64+h/2" \
   --time-font="Fira Sans" \
   --timesize=64 \
   \
-  --datecolor=88c0d0ff \
+  --datecolor=$datecolor \
   --datestr="%A" \
   --datepos="x+w/2:y+h/2" \
   --date-font="Deadhead Script" \
   --datesize=256 \
   \
   --veriftext="Verifying" \
-  --verifcolor=81a1c1ff \
+  --verifcolor=$verifcolor \
   --verif-font="Deadhead Script" \
   --verifpos="x+w/2:y+h/2" \
   --verifsize=256 \
   \
   --wrongtext="Try again" \
-  --wrongcolor=d08770ff \
+  --wrongcolor=$wrongcolor \
   --wrong-font="Deadhead Script" \
   --wrongpos="x+w/2:y+h/2" \
   --wrongsize=256 &&\
