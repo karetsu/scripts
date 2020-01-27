@@ -4,7 +4,7 @@
 #       for now its set in here
 THEME=laserwave
 
-case "$THEME" in 
+case "$THEME" in
   nord)
     background=292e39
     insidecolor=2e3440ff
