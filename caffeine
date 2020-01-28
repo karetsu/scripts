@@ -3,12 +3,9 @@
 # setup
 STATUS=$(xset -q | grep 'DPMS is' | tail -1 | awk '{print $3;}')
 
-# Laserwave
-#ON="#EEEEEE"
-#OFF="#27212E"
-# Nord
-ON="#eceff4"
-OFF="#4c566a"
+# depends on ~/.Xresources
+ON=$( cat ~/.Xresources | grep "*.color14"    | awk '{print $2}')
+OFF=$(cat ~/.Xresources | grep "*.foreground" | awk '{print $2}')
 
 case $STATUS in
   'Enabled') # we turn it off if its on
