@@ -2,7 +2,7 @@
 
 set -e
 echo " Checking repos"
-fd -t d -H '\.git$' ~ | grep -Ev 'Download|Project|zplug' | sed 's/\/\.git//' > ~/.repos
+fd -t d -H '\.git$' ~ | grep -Ev 'trash|Download|Project|zplug' | sed 's/\/\.git//' > ~/.repos
 
 for i in $(< ~/.repos);
   do
