@@ -1,0 +1,4 @@
+#! /usr/bin/env zsh
+
+#+TODO: make this have an option second argument
+nix-shell -p $1 --command $1

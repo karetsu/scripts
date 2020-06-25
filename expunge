@@ -1,0 +1,11 @@
+#! /usr/bin/env zsh
+
+
+trashcount=$(mu find maildir:/trash 2>/dev/null| wc -l)
+
+[[ $trashcount =  0 ]] && echo "  No cleaning needed" && exit
+
+
+echo " Emptying email trash"
+mu find maildir:/trash --fields=l 2>/dev/null | xargs rm
+echo "   Complete"

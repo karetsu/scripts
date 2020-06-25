@@ -4,17 +4,21 @@
 STATUS=$(xset -q | grep 'DPMS is' | tail -1 | awk '{print $3;}')
 
 # depends on ~/.Xresources
-ON=$( cat ~/.Xresources | grep "*.color14"    | awk '{print $2}')
-OFF=$(cat ~/.Xresources | grep "*.foreground" | awk '{print $2}')
+#ON=$( cat ~/.Xresources | grep "*.color14"    | awk '{print $2}')
+#OFF=$(cat ~/.Xresources | grep "*.foreground"   | awk '{print $2}')
+
+# HORIZON - until I get the Xresources right
+ON="#FDF0ED"
+OFF="#232530"
 
 case $STATUS in
   'Enabled') # we turn it off if its on
-    echo "%{F$OFF}%{F-}" > /tmp/caffeine
+    echo "%{F$OFF}%{F-}" > /tmp/xmonad-caffeine
     xset s off
     xset -dpms
    ;;
   'Disabled')
-    echo "%{F$ON}%{F-}" > /tmp/caffeine
+    echo "%{F$ON}%{F-}" > /tmp/xmonad-caffeine
     xset s on
     xset +dpms
     ;;

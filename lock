@@ -39,6 +39,23 @@ case "$THEME" in
     verifcolor=ffb85bff
     wrongcolor=964c7bff
     ;;
+  horizon)
+    background=27212e
+    insidecolor=27212eff
+    insidevercolor=ffb85bff
+    insidewrongcolor=964c7bff
+    ringcolor=eceff4ff
+    ringvercolor=eceff4ff
+    ringwrongcolor=eceff4ff
+    keyhlcolor=74dfc4ff
+    bshlcolor=1b1720ff
+    layoutcolor=eeeeeeff
+    seperatorcolor=27212e00
+    timecolor=ffffffff
+    datecolor=40b4c4ff
+    verifcolor=ffb85bff
+    wrongcolor=964c7bff
+    ;;
   *)
     exit;;
 esac
