@@ -2,7 +2,7 @@
 
 # TODO: make THEME part of the environment
 #       for now its set in here
-THEME=laserwave
+THEME=horizon
 
 case "$THEME" in
   nord)
@@ -40,26 +40,25 @@ case "$THEME" in
     wrongcolor=964c7bff
     ;;
   horizon)
-    background=27212e
-    insidecolor=27212eff
-    insidevercolor=ffb85bff
-    insidewrongcolor=964c7bff
-    ringcolor=eceff4ff
-    ringvercolor=eceff4ff
-    ringwrongcolor=eceff4ff
-    keyhlcolor=74dfc4ff
-    bshlcolor=1b1720ff
+    background=1a1c23fe
+    insidecolor=1a1c23ff
+    insidevercolor=f09383ff
+    insidewrongcolor=da103fff
+    ringcolor=232530ff
+    ringvercolor=232530ff
+    ringwrongcolor=232530ff
+    keyhlcolor=09f7a0
+    bshlcolor=25b2bcff
     layoutcolor=eeeeeeff
-    seperatorcolor=27212e00
-    timecolor=ffffffff
-    datecolor=40b4c4ff
-    verifcolor=ffb85bff
-    wrongcolor=964c7bff
+    seperatorcolor=1c1e2600
+    timecolor=fac29aff
+    datecolor=e95678ff
+    verifcolor=fab795ff
+    wrongcolor=e95678ff
     ;;
   *)
     exit;;
 esac
-
 
 # SINK=$(pactl list sinks | grep 'Name:' | head -1 | awk '{print $2;}')
 SINK=alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2
