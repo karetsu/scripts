@@ -6,15 +6,15 @@ set -e
 COLOUR_OFF="%{F#232530}"
 COLOUR_ON="%{F#B877DB}"
 
-FOCUS_GEARY="%{A1:wmctrl -a geary:}"
-FOCUS_DCORD="%{A1:wmctrl -a Discord:}"
+FOCUS="%{A1::}"
 
-GEARY="${FOCUS_GEARY}${COLOUR_OFF}%{F-}%{A}"
-DISCORD="${FOCUS_DCORD}${COLOUR_OFF}%{F-}%{A}"
+FOCUS="${FOCUS}${COLOUR_OFF}%{F-}%{A}"
 
-TRAY="${GEARY} ${DISCORD}"
+TRAY="${GENERAL}"
 echo "${TRAY}" > /tmp/xmonad-states
 
+# keep track of the number of notifications
+NUMNOT=0
 
 #  action stations
 dbus-monitor --session --profile "interface='org.freedesktop.Notifications'" |
@@ -31,25 +31,27 @@ dbus-monitor --session --profile "interface='org.freedesktop.Notifications'" |
            xargs -I '{}' ps -p '{}' -o comm= ) ||
       SAPP=
     TYPE=$(echo "${line}" | grep -Ev '#|NameAcquired|NameLost' | awk '{print $NF;}')
-    [[ $SAPP ]] && case $SAPP in
-      '.geary-wrapped')
-        [[ $TYPE == 'Notify' ]] && GEARY="${FOCUS_GEARY}${COLOUR_ON}%{F-}%{A}"
-        [[ $TYPE == 'CloseNotification' ]] && GEARY="${FOCUS_GEARY}${COLOUR_OFF}%{F-}%{A}"
-        ;;
-      '.discord')
-        [[ $TYPE == 'Notify' ]] && DISCORD="${COLOUR_ON}%{F-}%{A}"
-        [[ $TYPE == 'CloseNotification' ]] && DISCORD="${COLOUR_OFF}%{F-}%{A}"
-        ;;
+    [[ $TYPE == 'Notify' ]] && NUMNOT=$(($NUMNOT+1))
+    [[ $TYPE == 'NotificationClosed' ]] && NUMNOT=$(($NUMNOT-1))
+
+    case $NUMNOT in
+      0) FOCUS="${FOCUS}${COLOUR_OFF}%{F-}%{A}";;
+      *) FOCUS="${FOCUS}${COLOUR_ON}%{F-}%{A}";;
     esac
+        
+    # [[ $SAPP ]] && case $SAPP in
+    #   '.geary-wrapped')
+    #     [[ $TYPE == 'Notify' ]] && GEARY="${FOCUS_GEARY}${COLOUR_ON}%{F-}%{A}"
+    #     [[ $TYPE == 'CloseNotification' ]] && GEARY="${FOCUS_GEARY}${COLOUR_OFF}%{F-}%{A}"
+    #     ;;
+    #   '.discord')
+    #     [[ $TYPE == 'Notify' ]] && DISCORD="${COLOUR_ON}%{F-}%{A}"
+    #     [[ $TYPE == 'CloseNotification' ]] && DISCORD="${COLOUR_OFF}%{F-}%{A}"
+    #     ;;
+    # esac
 
 
     [[ $SENDER ]] &&
-      TRAY="${GEARY} ${DISCORD}" &&
+      TRAY="${FOCUS}" &&
       echo "${TRAY}" > /tmp/xmonad-states
   done
-
-# dbus-monitor "${WATCH1}" "${WATCH2}" "${WATCH3}" | \
-# awk '
-# /member=NoteAdded/ { getline; print "Created note " substr($2,7) }
-# /member=NoteSaved/ { getline; print "Added note " substr($2,7) }
-# /member=NoteDeleted/ { getline; print "Deleted note " substr($2,7) }

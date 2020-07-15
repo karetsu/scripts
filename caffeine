@@ -13,7 +13,7 @@ OFF="#232530"
 
 case $STATUS in
   'Enabled') # we turn it off if its on
-    echo "%{F$OFF}%{F-}" > /tmp/xmonad-caffeine
+    echo "%{F$OFF}%{F-}" > /tmp/xmonad-caffeine  
     xset s off
     xset -dpms
    ;;
