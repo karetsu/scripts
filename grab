@@ -1,0 +1,2 @@
+#!/usr/bin/env zsh
+maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
