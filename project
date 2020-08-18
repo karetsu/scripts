@@ -1,0 +1,30 @@
+#!/usr/bin/env zsh
+
+set -e
+
+PNAME=$1
+LOC=$(pwd)
+
+mkdir $PNAME
+cd $PNAME
+cabal init -i
+
+cat <<EOF > shell.nix 
+{ nixpkgs ? import <nixpkgs> { }, compiler ? "default" }:
+
+let
+
+  inherit (nixpkgs) pkgs;
+
+  pkg = pkgs.haskellPackages.callCabal2nix "$PNAME" (builtins.path {
+    path = "$LOC/$PNAME";
+    name = "$PNAME";
+  });
+
+  drv = pkgs.haskellPackages.callPackage pkg { };
+
+in if pkgs.lib.inNixShell then drv.env else drv
+EOF
+
+echo "use_nix" > .envrc
+direnv allow
