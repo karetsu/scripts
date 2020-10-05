@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-set -e
+set -euo pipefail
 
 PNAME=$1
 LOC=$(pwd)
@@ -8,6 +8,8 @@ LOC=$(pwd)
 mkdir $PNAME
 cd $PNAME
 cabal init -i
+cabal configure
+
 
 cat <<EOF > shell.nix 
 { nixpkgs ? import <nixpkgs> { }, compiler ? "default" }:
@@ -27,4 +29,5 @@ in if pkgs.lib.inNixShell then drv.env else drv
 EOF
 
 echo "use_nix" > .envrc
+
 direnv allow
