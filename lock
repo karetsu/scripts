@@ -63,8 +63,8 @@ esac
 # SINK=$(pactl list sinks | grep 'Name:' | head -1 | awk '{print $2;}')
 SINK=alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2
 
-pacmd suspend 1
 
+pacmd suspend 1
 i3lock-color \
   -n \
   --indicator \
